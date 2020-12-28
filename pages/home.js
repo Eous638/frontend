@@ -4,16 +4,15 @@ import MapView from 'react-native-maps';
 
 const home = () => {
     return (
-        <View style={styles.container}>
-              <MapView
-                initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-                    }}
-                />
-        </View>
+        <MapView style={styles.container}
+            initialRegion={{
+            latitude: 44.7866,
+            longitude: 20.4489,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+            }}
+         />
+        
     )
 }
 
