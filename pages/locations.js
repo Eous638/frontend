@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 const locations = () => {
     return (
         <View style={styles.container}>
-            <Text>locations</Text>
+            <Text>asdASDFASDF+r</Text>
         </View>
     )
 }
