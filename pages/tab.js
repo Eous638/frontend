@@ -1,5 +1,6 @@
 import React, { Profiler } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+import { AntDesign } from '@expo/vector-icons';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import home from './home'
 import about from './about'
@@ -13,18 +14,15 @@ const TabNavigator = () => {
         activeTintColor: 'blue',
         inactiveTintColor: 'black',
         tabStyle:{
-            borderColor:'##ebebeb',
-            borderLeftWidth:0.5,
-            borderRightWidth:0.5,
             justifyContent:'center',
         },
         labelStyle:{
             fontSize: 15
         }
       }}>
+        <Tab.Screen name='Home' exact path='\' component={home}/>
         <Tab.Screen name='Profile' component={profile}/>
         <Tab.Screen name='Tours' component={tours}/>
-        <Tab.Screen name='Home' component={home}/>
         <Tab.Screen name='Locations' component={locations}/>
         <Tab.Screen name='About' component={about}/>
     </Tab.Navigator>

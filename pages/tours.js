@@ -10,56 +10,63 @@ const DATA = [
     },
     {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
     },
     {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
     },
     {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
     },
     {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
     },
     {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
-    },{id: 'r87gdwqidb',
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
+    },
+    {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
-    },{id: 'r87gdwqidb',
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
+    },
+    {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
-    },{id: 'r87gdwqidb',
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
+    },
+    {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
-    },{id: 'r87gdwqidb',
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
+    },
+    {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
-    },{id: 'r87gdwqidb',
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
+    },
+    {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
-    },{id: 'r87gdwqidb',
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
+    },
+    {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
-    },{id: 'r87gdwqidb',
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
+    },
+    {id: 'r87gdwqidb',
     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg',
-    title: 'fuck',
-    desc : 'shit'
+    title: 'Hram svetog save',
+    desc : 'Veoma velika crkva'
     },
 ]
 const tours = () => {
