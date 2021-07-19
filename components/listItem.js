@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const TourItem = ({ item, navigation }) => {
+const ListItem = ({ item, navigation }) => {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: item.image }} />
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TourItem;
+export default ListItem;
