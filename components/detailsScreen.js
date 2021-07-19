@@ -8,6 +8,7 @@ const detailsScreen = observer(()=> {
   return (
     <View>
       <Text>{detailStore.title}</Text>
+    
     </View>
   );
 })
