@@ -1,10 +1,15 @@
-import React from "react";
-import { View, Text } from "react-native";
+import { observer } from "mobx-react-lite";
+import React,{ useContext} from "react";
+import { View, Text,  } from "react-native";
+import {descriptionStoreContext} from '../states/descriptionScreenState'
 
-export default function detailsScreen() {
+const detailsScreen = observer(()=> {
+  const detailStore = useContext(descriptionStoreContext)
   return (
     <View>
-      <Text>{item.title}</Text>
+      <Text>{detailStore.title}</Text>
     </View>
   );
-}
+})
+
+export default detailsScreen;
