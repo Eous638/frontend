@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import ListItem from "../components/ListItem";
+import ListItem from "../components/listItem";
 import DetailsScreen from "../components/detailsScreen";
 
 export const data = [
@@ -60,6 +60,7 @@ const Tours = ({ navigation }) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Pick a tour to start with:</Text>
       </View>
+      
       <TextInput
         style={{
           height: 30,
@@ -82,9 +83,9 @@ const Tours = ({ navigation }) => {
           renderItem={({ item }) => (
             <View>
               <TouchableOpacity
-                onPress={() => navigation.navigate("DetailsScreen", item)}
+                onPress={() => navigation.navigate("DetailsScreen")}
               >
-                <Text>{item.title}</Text>
+                <ListItem title={item.title} desc={item.desc} image={item.image} />
               </TouchableOpacity>
             </View>
           )}

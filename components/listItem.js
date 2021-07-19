@@ -5,15 +5,15 @@ import {
   Text,
   Image,
   Dimensions,
-  TouchableOpacity,
+
 } from "react-native";
 
-const ListItem = ({ item, navigation }) => {
+const ListItem = ( props) => {
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: item.image }} />
+      <Image style={styles.image} source={{ uri: props.image }} /> 
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.title}>{props.title}</Text>
         <Text
           numberOfLines={2}
           ellipsizeMode={"tail"}
@@ -26,10 +26,10 @@ const ListItem = ({ item, navigation }) => {
             color: "white",
           }}
         >
-          {item.desc}
+          {props.desc}
         </Text>
       </View>
-      ;
+      
     </View>
   );
 };
