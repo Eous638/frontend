@@ -41,15 +41,15 @@ const Tours = observer(({ navigation }) => {
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState(data);
   const [masterDataSource, setMasterDataSource] = useState(data);
-  const [data, setData] = useState({ hits: [] });
+  
  
  useEffect(() => {
   const fetchData = async () => {
     const result = await axios(
-      'https://pokeapi.co/api/v2/pokemon/ditto',
+      'http://192.168.0.22:8000/api/tours',
     );
 
-    setData(result.data);
+    setMasterDataSource(result.data);
   };
 
   fetchData();
@@ -103,11 +103,11 @@ const Tours = observer(({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("DetailsScreen")
                   detailStore.title = item.title
-                  detailStore.desc = item.desc
+                  detailStore.desc = item.description
                   detailStore.image = item.image}
               }
               >
-                <ListItem title={item.title} desc={item.desc} image={item.image} />
+                <ListItem title={item.title} desc={item.description} image={item.image} />
               </TouchableOpacity>
             </View>
           )}
