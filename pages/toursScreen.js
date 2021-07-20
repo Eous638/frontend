@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
+import { observer } from "mobx-react-lite";
+import {descriptionStoreContext} from '../states/descriptionScreenState'
 import {
   StyleSheet,
   Text,
@@ -34,7 +36,7 @@ export const data = [
   },
 ];
 
-const Tours = ({ navigation }) => {
+const Tours = observer(({ navigation }) => {
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState(data);
   const [masterDataSource, setMasterDataSource] = useState(data);
@@ -55,6 +57,8 @@ const Tours = ({ navigation }) => {
       setSearch(text);
     }
   };
+  const detailStore = useContext(descriptionStoreContext)
+  
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -83,7 +87,12 @@ const Tours = ({ navigation }) => {
           renderItem={({ item }) => (
             <View>
               <TouchableOpacity
-                onPress={() => navigation.navigate("DetailsScreen")}
+                onPress={() => {
+                  navigation.navigate("DetailsScreen")
+                  detailStore.title = item.title
+                  detailStore.desc = item.desc
+                  detailStore.image = item.image}
+              }
               >
                 <ListItem title={item.title} desc={item.desc} image={item.image} />
               </TouchableOpacity>
@@ -93,7 +102,7 @@ const Tours = ({ navigation }) => {
       </View>
     </View>
   );
-};
+});
 
 const Stack = createStackNavigator();
 export default function StackNavigator() {
