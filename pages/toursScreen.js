@@ -1,6 +1,7 @@
 import React, { useState, useEffect,useContext } from "react";
 import { observer } from "mobx-react-lite";
 import {descriptionStoreContext} from '../states/descriptionScreenState'
+import axios from 'axios';
 import {
   StyleSheet,
   Text,
@@ -40,6 +41,19 @@ const Tours = observer(({ navigation }) => {
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState(data);
   const [masterDataSource, setMasterDataSource] = useState(data);
+  const [data, setData] = useState({ hits: [] });
+ 
+ useEffect(() => {
+  const fetchData = async () => {
+    const result = await axios(
+      'https://pokeapi.co/api/v2/pokemon/ditto',
+    );
+
+    setData(result.data);
+  };
+
+  fetchData();
+}, []);
   // https://blog.jscrambler.com/add-a-search-bar-using-hooks-and-flatlist-in-react-native/ Code za search bar sa activity indicatorom i cool je pogledaj
   const searchFilterFunction = (text) => {
     if (text) {
@@ -58,7 +72,6 @@ const Tours = observer(({ navigation }) => {
     }
   };
   const detailStore = useContext(descriptionStoreContext)
-  
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
