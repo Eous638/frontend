@@ -16,31 +16,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ListItem from "../components/listItem";
 import DetailsScreen from "../components/detailsScreen";
 
-export const data = [
-  {
-    id: "r87gdwqidba",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg/275px-%D0%A5%D1%80%D0%B0%D0%BC_%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D0%B3_%D0%A1%D0%B0%D0%B2%D0%B5_%D0%A1%D0%B5%D1%80%D0%B1%D1%81%D0%BA%D0%BE%D0%B3_%D1%83_%D0%91%D0%B8%D0%BE%D0%B3%D1%80%D0%B0%D0%B4%D1%83.jpg",
-    title: "Temple of Saint Sava",
-    desc: "Serbian Orthodox church whasdadasdadasssssssssssssssaasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  },
-  {
-    id: "r87gdwqidbb",
-    image: "https://belgrade-beat.rs/photos/venues/27/c-1527600542.jpg",
-    title: "Nikole Pašića Square",
-    desc: "One of the main central townsaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  },
-  {
-    id: "r87gdwqidbc",
-    title: "1ebasdoj1231231233sa Tower",
-    desc: "Nebojsa Tower is ansaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa ",
-  },
-];
 
 const Tours = observer(({ navigation }) => {
   const [search, setSearch] = useState("");
-  const [filteredDataSource, setFilteredDataSource] = useState(data);
-  const [masterDataSource, setMasterDataSource] = useState(data);
+  const [filteredDataSource, setFilteredDataSource] = useState();
+  const [masterDataSource, setMasterDataSource] = useState();
   
  
  useEffect(() => {
@@ -48,8 +28,9 @@ const Tours = observer(({ navigation }) => {
     const result = await axios(
       'http://192.168.0.22:8000/api/tours',
     );
-
+    console.log(result.data)
     setMasterDataSource(result.data);
+    setFilteredDataSource(result.data);
   };
 
   fetchData();
@@ -96,7 +77,7 @@ const Tours = observer(({ navigation }) => {
       <View style={styles.listContainer}>
         <FlatList
           data={filteredDataSource}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id_field.toString()}
           renderItem={({ item }) => (
             <View>
               <TouchableOpacity
