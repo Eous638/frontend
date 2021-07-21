@@ -56,7 +56,7 @@ const Tours = observer(({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Pick a tour to start with:</Text>
+        <Text style={styles.title}>Choose the location you would like to see:</Text>
       </View>
       
       <TextInput
