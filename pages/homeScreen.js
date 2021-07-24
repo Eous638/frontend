@@ -13,7 +13,7 @@ const home = () => {
       let { status } = await Location.requestPermissionsAsync();
       if (status !== "granted") {
         setErrorMsg("Permission to access location was denied");
-        return;
+        console.log(errorMsg);
       }
 
       await Location.watchPositionAsync(
