@@ -28,7 +28,6 @@ const Tours = observer(({ navigation }) => {
     const result = await axios(
       'http://192.168.0.22:8000/api/places',
     );
-    console.log(result.data)
     setMasterDataSource(result.data);
     setFilteredDataSource(result.data);
   };
@@ -56,7 +55,7 @@ const Tours = observer(({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Choose the location you would like to see:</Text>
+        <Text style={styles.title}>View locations:</Text>
       </View>
       
       <TextInput
@@ -88,7 +87,7 @@ const Tours = observer(({ navigation }) => {
                   detailStore.image = item.image}
               }
               >
-                <ListItem title={item.title} desc={''} image={item.image} />
+                <ListItem title={item.title} desc={item.desc} image={item.image} />
               </TouchableOpacity>
             </View>
           )}

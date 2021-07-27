@@ -28,7 +28,6 @@ const Tours = observer(({ navigation }) => {
     const result = await axios(
       'http://192.168.0.22:8000/api/tours',
     );
-    console.log(result.data)
     setMasterDataSource(result.data);
     setFilteredDataSource(result.data);
   };
