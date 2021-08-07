@@ -68,7 +68,7 @@ export default function TabNavigator() {
         name="About Us"
         component={About}
         options={{
-          tabBarLabel: "About",
+          tabBarLabel: "About Us",
           tabBarIcon: ({ color }) => (
             <Icon_About name="md-school-outline" color={color} size={25} />
           ),

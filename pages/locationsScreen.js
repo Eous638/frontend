@@ -1,7 +1,7 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { observer } from "mobx-react-lite";
-import {descriptionStoreContext} from '../states/descriptionScreenState'
-import axios from 'axios';
+import { descriptionStoreContext } from "../states/descriptionScreenState";
+import axios from "axios";
 import {
   StyleSheet,
   Text,
@@ -16,24 +16,20 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ListItem from "../components/listItem";
 import DetailsScreen from "../components/detailsScreen";
 
-
 const Tours = observer(({ navigation }) => {
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState();
   const [masterDataSource, setMasterDataSource] = useState();
-  
- 
- useEffect(() => {
-  const fetchData = async () => {
-    const result = await axios(
-      'http://192.168.0.22:8000/api/places',
-    );
-    setMasterDataSource(result.data);
-    setFilteredDataSource(result.data);
-  };
 
-  fetchData();
-}, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios("http://192.168.1.5:8000/api/places");
+      setMasterDataSource(result.data);
+      setFilteredDataSource(result.data);
+    };
+
+    fetchData();
+  }, []);
   // https://blog.jscrambler.com/add-a-search-bar-using-hooks-and-flatlist-in-react-native/ Code za search bar sa activity indicatorom i cool je pogledaj
   const searchFilterFunction = (text) => {
     if (text) {
@@ -51,13 +47,13 @@ const Tours = observer(({ navigation }) => {
       setSearch(text);
     }
   };
-  const detailStore = useContext(descriptionStoreContext)
+  const detailStore = useContext(descriptionStoreContext);
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>View locations:</Text>
       </View>
-      
+
       <TextInput
         style={{
           height: 30,
@@ -81,13 +77,13 @@ const Tours = observer(({ navigation }) => {
             <View>
               <TouchableOpacity
                 onPress={() => {
-                  navigation.navigate("DetailsScreen")
-                  detailStore.title = item.title
-                  detailStore.desc = item.description
-                  detailStore.image = item.image}
-              }
+                  navigation.navigate("DetailsScreen");
+                  detailStore.title = item.title;
+                  detailStore.desc = item.description;
+                  detailStore.image = item.image;
+                }}
               >
-                <ListItem title={item.title} desc={item.desc} image={item.image} />
+                <ListItem title={item.title} desc={""} image={item.image} />
               </TouchableOpacity>
             </View>
           )}

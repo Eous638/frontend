@@ -1,7 +1,7 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { observer } from "mobx-react-lite";
-import {descriptionStoreContext} from '../states/descriptionScreenState'
-import axios from 'axios';
+import { descriptionStoreContext } from "../states/descriptionScreenState";
+import axios from "axios";
 import {
   StyleSheet,
   Text,
@@ -9,31 +9,38 @@ import {
   FlatList,
   TextInput,
   Dimensions,
-  Button,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import ListItem from "../components/listItem";
 import DetailsScreen from "../components/detailsScreen";
 
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
 
 const Tours = observer(({ navigation }) => {
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState();
   const [masterDataSource, setMasterDataSource] = useState();
-  
- 
- useEffect(() => {
-  const fetchData = async () => {
-    const result = await axios(
-      'http://192.168.0.22:8000/api/tours',
-    );
-    setMasterDataSource(result.data);
-    setFilteredDataSource(result.data);
-  };
+  const [isLoading, setIsLoading] = useState();
+  const [refreshing, setRefreshing] = React.useState(false);
 
-  fetchData();
-}, []);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(700).then(() => setRefreshing(false));
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios("http://192.168.1.5:8000/api/tours");
+      setMasterDataSource(result.data);
+      setFilteredDataSource(result.data);
+    };
+
+    fetchData();
+  }, []);
   // https://blog.jscrambler.com/add-a-search-bar-using-hooks-and-flatlist-in-react-native/ Code za search bar sa activity indicatorom i cool je pogledaj
   const searchFilterFunction = (text) => {
     if (text) {
@@ -51,13 +58,12 @@ const Tours = observer(({ navigation }) => {
       setSearch(text);
     }
   };
-  const detailStore = useContext(descriptionStoreContext)
+  const detailStore = useContext(descriptionStoreContext);
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Pick a tour to start with:</Text>
       </View>
-      
       <TextInput
         style={{
           height: 30,
@@ -79,16 +85,16 @@ const Tours = observer(({ navigation }) => {
           keyExtractor={(item) => item.id_field.toString()}
           renderItem={({ item }) => (
             <View>
-              <TouchableOpacity
+              <Pressable
                 onPress={() => {
-                  navigation.navigate("DetailsScreen")
-                  detailStore.title = item.title
-                  detailStore.desc = item.description
-                  detailStore.image = item.image}
-              }
+                  navigation.navigate("DetailsScreen");
+                  detailStore.title = item.title;
+                  detailStore.desc = item.description;
+                  detailStore.image = item.image;
+                }}
               >
-                <ListItem title={item.title} desc={item.description} image={item.image} />
-              </TouchableOpacity>
+                <ListItem title={item.title} image={item.image} />
+              </Pressable>
             </View>
           )}
         />
@@ -97,7 +103,7 @@ const Tours = observer(({ navigation }) => {
   );
 });
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 export default function StackNavigator() {
   return (
     <Stack.Navigator
@@ -134,5 +140,9 @@ const styles = StyleSheet.create({
   textInput: {
     color: "gray",
     height: 20,
+  },
+  refresh: {
+    marginTop: 60,
+    flex: 1,
   },
 });

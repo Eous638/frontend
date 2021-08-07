@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import beoturaEkipa from "../assets/beoturaEkipa.png";
 import { Linking } from "react-native";
 
@@ -15,14 +15,14 @@ const about = () => {
         start your Belgrade adventure with us! If you want to know more, visit
         our website.
       </Text>
-      <Text
+      <Pressable
         style={styles.link}
         onPress={() => {
           Linking.openURL("https://beotura.edukacija21.com");
         }}
       >
-        Visit Us
-      </Text>
+        <Text style={styles.text}>VISIT US</Text>
+      </Pressable>
     </View>
   );
 };
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   headerText: {
-    fontSize: 20,
+    fontSize: 24,
     paddingBottom: 30,
   },
   image: {
@@ -50,16 +50,17 @@ const styles = StyleSheet.create({
     color: "#111111",
   },
   link: {
-    marginTop: 25,
-    borderRadius: 5,
-    borderWidth: 2,
-    borderColor: "#007aff",
-    paddingLeft: 90,
-    paddingRight: 90,
-    paddingTop: 10,
-    paddingBottom: 10,
-    fontSize: 16,
-    color: "#007aff",
+    width: 150,
+    height: 50,
+    marginTop: 20,
+    justifyContent: "center",
+    backgroundColor: "#FF4848",
+    borderRadius: 25,
+    alignItems: "center",
+  },
+  text: {
+    color: "white",
+    fontWeight: "bold",
   },
 });
 
