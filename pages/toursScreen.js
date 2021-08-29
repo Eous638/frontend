@@ -9,7 +9,6 @@ import {
   FlatList,
   TextInput,
   Dimensions,
-  TouchableOpacity,
   Pressable,
 } from "react-native";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
@@ -34,12 +33,14 @@ const Tours = observer(({ navigation }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("http://192.168.1.5:8000/api/tours");
+      const result = await axios("http://192.168.0.22:8000/api/tours");
       setMasterDataSource(result.data);
       setFilteredDataSource(result.data);
+      console.log(result.data[0].Place)
     };
 
     fetchData();
+    
   }, []);
   // https://blog.jscrambler.com/add-a-search-bar-using-hooks-and-flatlist-in-react-native/ Code za search bar sa activity indicatorom i cool je pogledaj
   const searchFilterFunction = (text) => {
@@ -93,6 +94,7 @@ const Tours = observer(({ navigation }) => {
                   detailStore.image = item.image;
                 }}
               >
+                
                 <ListItem title={item.title} image={item.image} />
               </Pressable>
             </View>

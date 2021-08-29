@@ -3,16 +3,14 @@ import React, { useContext } from "react";
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   Pressable,
-  TouchableOpacity,
   ScrollView,
   ImageBackground,
 } from "react-native";
 import { descriptionStoreContext } from "../states/descriptionScreenState";
 import { IconButton, Colors } from "react-native-paper";
-import Icon_Arrow from "react-native-vector-icons/Ionicons";
+
 
 const detailsScreen = observer(({ navigation }) => {
   const detailStore = useContext(descriptionStoreContext);
@@ -27,13 +25,7 @@ const detailsScreen = observer(({ navigation }) => {
             borderBottomRightRadius: 40,
           }}
         >
-          {/* <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Icon_Arrow
-              style={styles.arrow}
-              name="arrow-back-outline"
-              size={40}
-            />
-          </TouchableOpacity> */}
+          
           <IconButton
             style={styles.arrow}
             icon="arrow-left"
@@ -43,7 +35,7 @@ const detailsScreen = observer(({ navigation }) => {
           />
         </ImageBackground>
         <Text style={styles.title}>{detailStore.title}</Text>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}>
           <Text style={styles.buttonTxt}>POKRENI TURU</Text>
         </Pressable>
         <Text style={styles.desc}>{detailStore.desc}</Text>

@@ -9,7 +9,6 @@ import {
   FlatList,
   TextInput,
   Dimensions,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -23,7 +22,7 @@ const Tours = observer(({ navigation }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("http://192.168.1.5:8000/api/places");
+      const result = await axios("http://192.168.43.34:8000/api/places");
       setMasterDataSource(result.data);
       setFilteredDataSource(result.data);
     };
