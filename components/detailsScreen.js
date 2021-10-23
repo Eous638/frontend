@@ -36,7 +36,7 @@ const detailsScreen = observer(({ navigation }) => {
         </ImageBackground>
         <Text style={styles.title}>{detailStore.title}</Text>
         <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}>
-          <Text style={styles.buttonTxt}>POKRENI TURU</Text>
+          <Text style={styles.buttonTxt}>ZAPOČNI PUT</Text>
         </Pressable>
         <Text style={styles.desc}>{detailStore.desc}</Text>
       </View>

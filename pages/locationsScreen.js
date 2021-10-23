@@ -9,25 +9,38 @@ import {
   FlatList,
   TextInput,
   Dimensions,
-  TouchableOpacity,
+  Pressable,
 } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import ListItem from "../components/listItem";
 import DetailsScreen from "../components/detailsScreen";
+
+const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
 
 const Tours = observer(({ navigation }) => {
   const [search, setSearch] = useState("");
   const [filteredDataSource, setFilteredDataSource] = useState();
   const [masterDataSource, setMasterDataSource] = useState();
+  const [isLoading, setIsLoading] = useState();
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(700).then(() => setRefreshing(false));
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("http://192.168.43.34:8000/api/places");
+      const result = await axios("http://192.168.0.22:8000/api/places");
       setMasterDataSource(result.data);
       setFilteredDataSource(result.data);
+      console.log(result.data[0].Place)
     };
 
     fetchData();
+    
   }, []);
   // https://blog.jscrambler.com/add-a-search-bar-using-hooks-and-flatlist-in-react-native/ Code za search bar sa activity indicatorom i cool je pogledaj
   const searchFilterFunction = (text) => {
@@ -52,7 +65,6 @@ const Tours = observer(({ navigation }) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>View locations:</Text>
       </View>
-
       <TextInput
         style={{
           height: 30,
@@ -74,7 +86,7 @@ const Tours = observer(({ navigation }) => {
           keyExtractor={(item) => item.id_field.toString()}
           renderItem={({ item }) => (
             <View>
-              <TouchableOpacity
+              <Pressable
                 onPress={() => {
                   navigation.navigate("DetailsScreen");
                   detailStore.title = item.title;
@@ -82,8 +94,9 @@ const Tours = observer(({ navigation }) => {
                   detailStore.image = item.image;
                 }}
               >
-                <ListItem title={item.title} desc={""} image={item.image} />
-              </TouchableOpacity>
+                
+                <ListItem title={item.title} image={item.image} />
+              </Pressable>
             </View>
           )}
         />
@@ -92,7 +105,7 @@ const Tours = observer(({ navigation }) => {
   );
 });
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 export default function StackNavigator() {
   return (
     <Stack.Navigator
@@ -129,5 +142,9 @@ const styles = StyleSheet.create({
   textInput: {
     color: "gray",
     height: 20,
+  },
+  refresh: {
+    marginTop: 60,
+    flex: 1,
   },
 });
