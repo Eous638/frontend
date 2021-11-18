@@ -33,7 +33,7 @@ const Tours = observer(({ navigation }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios("http://192.168.0.22:8000/api/tours");
+      const result = await axios("http://api.beotura.rs/api/tours");
       setMasterDataSource(result.data);
       setFilteredDataSource(result.data);
       console.log(result.data[0].Place)
