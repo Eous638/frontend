@@ -11,9 +11,8 @@ import {
   Dimensions,
   Pressable,
 } from "react-native";
-import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import ListItem from "../components/listItem";
-import DetailsScreen from "../components/detailsScreen";
+
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -36,7 +35,7 @@ const Tours = observer(({ navigation }) => {
       const result = await axios("http://api.beotura.rs/api/tours");
       setMasterDataSource(result.data);
       setFilteredDataSource(result.data);
-      console.log(result.data[0].Place)
+      
     };
 
     fetchData();
@@ -92,6 +91,8 @@ const Tours = observer(({ navigation }) => {
                   detailStore.title = item.title;
                   detailStore.desc = item.description;
                   detailStore.image = item.image;
+                  detailStore.markers = item.Place;
+                
                 }}
               >
                 
@@ -105,19 +106,7 @@ const Tours = observer(({ navigation }) => {
   );
 });
 
-const Stack = createNativeStackNavigator();
-export default function StackNavigator() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="Tours" component={Tours} />
-      <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
-    </Stack.Navigator>
-  );
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -148,3 +137,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default Tours;

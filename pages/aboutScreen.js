@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import beoturaEkipa from "../assets/beoturaEkipa.png";
 import { Linking } from "react-native";
 
-const about = () => {
+const About = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>This is our story</Text>
@@ -18,7 +18,7 @@ const about = () => {
       <Pressable
         style={styles.link}
         onPress={() => {
-          Linking.openURL("https://beotura.edukacija21.com");
+          Linking.openURL("https://beotura.rs/");
         }}
       >
         <Text style={styles.text}>VISIT US</Text>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     height: 50,
     marginTop: 20,
     justifyContent: "center",
-    backgroundColor: "#FF4848",
+    backgroundColor: "#16b8f3",
     borderRadius: 25,
     alignItems: "center",
   },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default about;
+export default About;
 
 // Mi smo beogradski srednjoškolci i otkrivamo zanimljivu stranu beogradske
 // istorije. Ustvari, istražujemo i fotografišemo skrivene dragulje

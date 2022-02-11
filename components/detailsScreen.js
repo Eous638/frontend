@@ -14,6 +14,7 @@ import { IconButton, Colors } from "react-native-paper";
 
 const detailsScreen = observer(({ navigation }) => {
   const detailStore = useContext(descriptionStoreContext);
+
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -35,7 +36,7 @@ const detailsScreen = observer(({ navigation }) => {
           />
         </ImageBackground>
         <Text style={styles.title}>{detailStore.title}</Text>
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Home')}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Direction')}>
           <Text style={styles.buttonTxt}>ZAPOČNI PUT</Text>
         </Pressable>
         <Text style={styles.desc}>{detailStore.desc}</Text>

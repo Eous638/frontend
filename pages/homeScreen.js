@@ -1,56 +1,70 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Image } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import axios from "axios";
-
-const home = () => {
-  const [lat, setLat] = useState(44.7866);
-  const [long, setLong] = useState(20.4489);
+import { observer } from "mobx-react-lite";
+import { descriptionStoreContext } from "../states/descriptionScreenState";
+const home = observer(({ navigation }) => {
+  
   const [errorMsg, setErrorMsg] = useState(null);
-
+  const [markers, setMarkers] = useState([]);
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestPermissionsAsync();
+      let { status } = await Location.requestBackgroundPermissionsAsync();
       if (status !== "granted") {
         setErrorMsg("Permission to access location was denied");
         console.log(errorMsg);
-      }
+    }
+    })}
+  );
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios("http://api.beotura.rs/api/places");
+      setMarkers(result.data);
+     
+    };
 
-      await Location.watchPositionAsync(
-        {
-          accuracy: Location.Accuracy.BestForNavigation,
-          distanceInterval: 1,
-          timeInterval: 1000,
-        },
-        (location) => {
-          setLat(parseFloat(location.coords.latitude));
-          setLong(parseFloat(location.coords.longitude));
-        }
-      );
-    })();
+    fetchData();
+    
   }, []);
- 
+
+  const detailStore = useContext(descriptionStoreContext);
   return (
     <MapView
       style={styles.container}
       region={{
-        latitude: lat,
-        longitude: long,
-        latitudeDelta: 0.00922,
-        longitudeDelta: 0.00401,
+        latitude: 44.8066,
+        longitude: 20.4689,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0401,
       }}
+      mapType="standard"
+      showsPointsOfInterest={false}
+      showsBuildings={false}
+      toolbarEnabled={false}
     >
-      <Marker coordinate={{ latitude: lat, longitude: long }}>
-        <Image
-          source={require("../assets/user_loc.png")}
+      {markers.map((marker) => (
+        <Marker
+          key={marker.id}
+          coordinate={{latitude: parseFloat(marker.latitude), longitude: parseFloat(marker.longitude)}}
+        
+          onPress={() => {
+            navigation.navigate("DetailsScreen");
+            detailStore.title = marker.title;
+            detailStore.desc = marker.description;
+            detailStore.image = marker.image;
+          }}
+          >
+          <Image source={{uri: marker.icon}}
           style={{ width: 26, height: 28 }}
           resizeMode="contain"
         />
-      </Marker>
+          </Marker>))}
+      
     </MapView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {
