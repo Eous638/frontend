@@ -6,6 +6,8 @@ class descriptionStore{
     @observable desc = '';
     @observable image = '';
     @observable markers = [];
+    @observable startlang = "";
+    @observable startlat = "";
 }
 
 export const descriptionStoreContext = createContext(new descriptionStore())

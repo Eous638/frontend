@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { descriptionStoreContext } from "../states/descriptionScreenState";
 import axios from "axios";
+import { languageStoreContext } from "../states/languageState";
 import {
   StyleSheet,
   Text,
@@ -24,6 +25,9 @@ const Tours = observer(({ navigation }) => {
   const [masterDataSource, setMasterDataSource] = useState();
   const [isLoading, setIsLoading] = useState();
   const [refreshing, setRefreshing] = React.useState(false);
+  const langStore = useContext(languageStoreContext);
+  const [lang, setLang] = useState("");
+
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -43,6 +47,7 @@ const Tours = observer(({ navigation }) => {
   }, []);
   // https://blog.jscrambler.com/add-a-search-bar-using-hooks-and-flatlist-in-react-native/ Code za search bar sa activity indicatorom i cool je pogledaj
   const searchFilterFunction = (text) => {
+    if (lang == "sr") {
     if (text) {
       const newData = masterDataSource.filter(function (item) {
         const itemData = item.title
@@ -57,12 +62,44 @@ const Tours = observer(({ navigation }) => {
       setFilteredDataSource(masterDataSource);
       setSearch(text);
     }
-  };
+  } else if(lang == 'en'){
+    if (text) {
+      const newData = masterDataSource.filter(function (item) {
+        const itemData = item.title_en
+          ? item.title_en.toUpperCase()
+          : "".toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      setFilteredDataSource(masterDataSource);
+      setSearch(text);
+    }
+  };}
   const detailStore = useContext(descriptionStoreContext);
+ 
+  
+ 
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setLang(langStore.language);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  const l10n = {
+    'title': {en: 'Choose tour', sr: 'Izaberi turu'},
+    'search': {en: 'Search', sr: 'Pretraga'},
+    
+}
+  
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Pick a tour to start with:</Text>
+        <Text style={styles.title}>{l10n['title'][lang]}</Text>
       </View>
       <TextInput
         style={{
@@ -76,7 +113,7 @@ const Tours = observer(({ navigation }) => {
           paddingLeft: 20,
         }}
         onChangeText={(text) => searchFilterFunction(text)}
-        placeholder={"Search"}
+        placeholder={l10n['search'][lang]}
         value={search}
       />
       <View style={styles.listContainer}>
@@ -88,15 +125,15 @@ const Tours = observer(({ navigation }) => {
               <Pressable
                 onPress={() => {
                   navigation.navigate("DetailsScreen");
-                  detailStore.title = item.title;
-                  detailStore.desc = item.description;
+                  detailStore.title = (lang == "sr") ? item.title : item.title_en;
+                  detailStore.desc = (lang == "sr") ? item.description : item.description_en;
                   detailStore.image = item.image;
                   detailStore.markers = item.Place;
                 
                 }}
               >
                 
-                <ListItem title={item.title} image={item.image} />
+                <ListItem title={(lang == "sr") ? item.title : item.title_en} image={item.image} />
               </Pressable>
             </View>
           )}

@@ -5,19 +5,36 @@ import * as Location from "expo-location";
 import axios from "axios";
 import { observer } from "mobx-react-lite";
 import { descriptionStoreContext } from "../states/descriptionScreenState";
+import { languageStoreContext } from "../states/languageState";
 const home = observer(({ navigation }) => {
   
   const [errorMsg, setErrorMsg] = useState(null);
   const [markers, setMarkers] = useState([]);
+  const langStore = useContext(languageStoreContext);
+  const [lang, setLang] = useState("");
+  const detailStore = useContext(descriptionStoreContext);
+
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setLang(langStore.language);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestBackgroundPermissionsAsync();
-      if (status !== "granted") {
-        setErrorMsg("Permission to access location was denied");
-        console.log(errorMsg);
-    }
-    })}
-  );
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      detailStore.startlang = parseFloat(location.coords.longitude)
+      detailStore.startlat = parseFloat(location.coords.latitude)
+    })();
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios("http://api.beotura.rs/api/places");
@@ -29,7 +46,6 @@ const home = observer(({ navigation }) => {
     
   }, []);
 
-  const detailStore = useContext(descriptionStoreContext);
   return (
     <MapView
       style={styles.container}
@@ -43,21 +59,34 @@ const home = observer(({ navigation }) => {
       showsPointsOfInterest={false}
       showsBuildings={false}
       toolbarEnabled={false}
+      showsUserLocation={true}
     >
       {markers.map((marker) => (
         <Marker
-          key={marker.id}
+          key={marker.id_field}
           coordinate={{latitude: parseFloat(marker.latitude), longitude: parseFloat(marker.longitude)}}
         
           onPress={() => {
             navigation.navigate("DetailsScreen");
-            detailStore.title = marker.title;
-            detailStore.desc = marker.description;
+            detailStore.title = (lang === "sr") ? marker.title : marker.title_en;
+            detailStore.desc = (lang === "sr") ? marker.description : marker.description_en;
             detailStore.image = marker.image;
+            detailStore.markers = [{
+              "title": marker.title,
+              "title_en": marker.title_en,
+              "description": marker.description,
+              "description_en": marker.description_en,
+              "latitude": marker.latitude,
+              "longitude": marker.longitude,
+              "ordering": marker.ordering,
+              "image": marker.image,
+              "icon": marker.icon,
+              "id_field": 1
+          }]
           }}
           >
           <Image source={{uri: marker.icon}}
-          style={{ width: 26, height: 28 }}
+          style={{ width: 40, height: 40 }}
           resizeMode="contain"
         />
           </Marker>))}

@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import React, { useContext } from "react";
+import React, { useContext , useState} from "react";
 import {
   View,
   Text,
@@ -8,13 +8,27 @@ import {
   ScrollView,
   ImageBackground,
 } from "react-native";
-import { descriptionStoreContext } from "../states/descriptionScreenState";
+import { descriptionStoreContext } from "../states/descriptionScreenState"
+import { languageStoreContext } from "../states/languageState";
 import { IconButton, Colors } from "react-native-paper";
 
 
 const detailsScreen = observer(({ navigation }) => {
   const detailStore = useContext(descriptionStoreContext);
+  const langStore = useContext(languageStoreContext);
+  const [lang, setLang] = useState("");
+  const [expand, setExpand] = useState(false)
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setLang(langStore.language);
+    });
 
+    return unsubscribe;
+  }, [navigation]);
+  const l10n = {
+    'button': {en: 'Start your trip', sr: 'Započni svoj put'},
+    
+}
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -37,9 +51,9 @@ const detailsScreen = observer(({ navigation }) => {
         </ImageBackground>
         <Text style={styles.title}>{detailStore.title}</Text>
         <Pressable style={styles.button} onPress={() => navigation.navigate('Direction')}>
-          <Text style={styles.buttonTxt}>ZAPOČNI PUT</Text>
+          <Text style={styles.buttonTxt}>{l10n['button'][lang]}</Text>
         </Pressable>
-        <Text style={styles.desc}>{detailStore.desc}</Text>
+        <Text  style={styles.desc} >{detailStore.desc}</Text>
       </View>
     </ScrollView>
   );

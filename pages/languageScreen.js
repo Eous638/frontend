@@ -1,29 +1,46 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import {useState} from 'react';
+import { observer } from "mobx-react-lite";
+import { languageStoreContext } from "../states/languageState";
+import { RadioButton } from 'react-native-paper';
 
-export default function Language() {
-  const [lang1, setLang1] = useState(styles.button);
-  const [lang2, setLang2] = useState(styles.button);
-  
+
+ const Language = observer(()=>{
+  const [checked, setChecked] = useState('first');
+  const langStore = useContext(languageStoreContext);
+  function setEnglish(){
+    langStore.language = "en";
+  };
+  function setSerbian(){
+    langStore.language = "sr";
+  };
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Choose Your Preferred Language</Text>
-
-      <TouchableOpacity style={lang1} >
-        <Text>
-          Srpski
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={lang2} >
-        <Text>
-          English
-        </Text>
-      </TouchableOpacity>
-      
+      <Text style={styles.title}>{(langStore.language == "sr") ? 'Izaberite jezik' : 'Choose the language' }</Text>
+      <View style={styles.radioContainer}>
+      <Text style={styles.radioText}>Srpski</Text>
+      <RadioButton
+        value="English"
+        status={ checked === 'first' ? 'checked' : 'unchecked' }
+        onPress={() => {setChecked('first'), setSerbian()} }
+        uncheckedColor="blue"
+        color="red"
+      />
+      </View>
+      <View style={styles.radioContainer}>
+      <Text style={styles.radioText}>English</Text>
+      <RadioButton
+        value="Srpski"
+        status={ checked === 'second' ? 'checked' : 'unchecked' }
+      onPress={() => {setChecked('second'), setEnglish()}}
+        uncheckedColor="blue"
+        color="red"
+      />
+      </View>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -55,5 +72,20 @@ const styles = StyleSheet.create({
       borderRadius: 25,
       backgroundColor: "red",
       margin: 10,
-    }
+    },
+    radioContainer: {
+      flexDirection: "row", 
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "85%",
+      marginBottom: 20,
+    
+    },
+    radioText: {
+      fontSize: 20,
+      paddingLeft: 20,
+    },
+
 });
+
+export default  Language;
