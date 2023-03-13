@@ -7,7 +7,7 @@ import {
   View,
   Pressable,
   ScrollView,
-  ImageBackground,
+  ImageBackground, BackHandler,
 } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
@@ -34,6 +34,16 @@ const Direction = observer(({ navigation }) => {
     return unsubscribe;
   }, [navigation]);
   const GOOGLE_MAPS_APIKEY = "AIzaSyBN_JUnf-Anvm3Z7S0QdWdH7F6eJTLyiIA";
+
+  React.useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      if (navigation.canGoBack()){
+        navigation.goBack();
+        return true;
+      }
+    });
+  }, []);
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();

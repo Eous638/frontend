@@ -1,12 +1,22 @@
 import React, {useState, useContext} from "react";
 import { observer } from "mobx-react-lite";
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import {StyleSheet, Text, View, Image, Pressable, BackHandler} from "react-native";
 import beoturaEkipa from "../assets/beoturaEkipa.png";
 import { Linking } from "react-native";
 import { languageStoreContext } from "../states/languageState";
 const About = observer(({navigation}) => {
   const langStore = useContext(languageStoreContext);
   const [lang, setLang] = useState("");
+
+  React.useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      if (navigation.canGoBack()){
+        navigation.goBack();
+        return true;
+      }
+    });
+  }, []);
+
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setLang(langStore.language);

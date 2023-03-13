@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Pressable,
   ScrollView,
-  ImageBackground,
+  ImageBackground, BackHandler,
 } from "react-native";
 import { descriptionStoreContext } from "../states/descriptionScreenState"
 import { languageStoreContext } from "../states/languageState";
@@ -17,7 +17,17 @@ const detailsScreen = observer(({ navigation }) => {
   const detailStore = useContext(descriptionStoreContext);
   const langStore = useContext(languageStoreContext);
   const [lang, setLang] = useState("");
-  const [expand, setExpand] = useState(false)
+  const [expand, setExpand] = useState(false);
+
+  React.useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      if (navigation.canGoBack()){
+        navigation.goBack();
+        return true;
+      }
+    });
+  }, []);
+
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setLang(langStore.language);
@@ -27,7 +37,7 @@ const detailsScreen = observer(({ navigation }) => {
   }, [navigation]);
   const l10n = {
     'button': {en: 'Start your trip', sr: 'Započni svoj put'},
-    
+
 }
   return (
     <ScrollView>
@@ -40,7 +50,7 @@ const detailsScreen = observer(({ navigation }) => {
             borderBottomRightRadius: 40,
           }}
         >
-          
+
           <IconButton
             style={styles.arrow}
             icon="arrow-left"

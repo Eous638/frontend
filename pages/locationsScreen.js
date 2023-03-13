@@ -10,7 +10,7 @@ import {
   FlatList,
   TextInput,
   Dimensions,
-  Pressable,
+  Pressable, BackHandler,
 } from "react-native";
 
 import ListItem from "../components/listItem";
@@ -30,6 +30,15 @@ const Places = observer(({ navigation }) => {
   const [lang, setLang] = useState("");
   const langStore = useContext(languageStoreContext);
 
+  React.useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      if (navigation.canGoBack()){
+        navigation.goBack();
+        return true;
+      }
+    });
+  }, []);
+
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(700).then(() => setRefreshing(false));
@@ -46,11 +55,11 @@ const Places = observer(({ navigation }) => {
       const result = await axios("http://api.beotura.rs/api/places");
       setMasterDataSource(result.data);
       setFilteredDataSource(result.data);
-     
+
     };
 
     fetchData();
-    
+
   }, []);
   // https://blog.jscrambler.com/add-a-search-bar-using-hooks-and-flatlist-in-react-native/ Code za search bar sa activity indicatorom i cool je pogledaj
   const searchFilterFunction = (text) => {
@@ -89,7 +98,7 @@ const Places = observer(({ navigation }) => {
   const l10n = {
     'title': {en: 'Choose location', sr: 'Izaberi lokaciju'},
     'search': {en: 'Search', sr: 'Pretraga'},
-    
+
 }
   return (
     <View style={styles.container}>
@@ -135,11 +144,11 @@ const Places = observer(({ navigation }) => {
                     "icon": item.icon,
                     "id_field": 1
                 }]
-                  
+
                 }}
               >
-                
-                
+
+
                 <ListItem title={(lang == "sr") ? item.title : item.title_en} image={item.image} />
               </Pressable>
             </View>

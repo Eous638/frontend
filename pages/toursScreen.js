@@ -10,7 +10,7 @@ import {
   FlatList,
   TextInput,
   Dimensions,
-  Pressable,
+  Pressable, BackHandler,
 } from "react-native";
 import ListItem from "../components/listItem";
 
@@ -28,6 +28,14 @@ const Tours = observer(({ navigation }) => {
   const langStore = useContext(languageStoreContext);
   const [lang, setLang] = useState("");
 
+  React.useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      if (navigation.canGoBack()){
+        navigation.goBack();
+        return true;
+      }
+    });
+  }, []);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -39,11 +47,11 @@ const Tours = observer(({ navigation }) => {
       const result = await axios("http://api.beotura.rs/api/tours");
       setMasterDataSource(result.data);
       setFilteredDataSource(result.data);
-      
+
     };
 
     fetchData();
-    
+
   }, []);
   // https://blog.jscrambler.com/add-a-search-bar-using-hooks-and-flatlist-in-react-native/ Code za search bar sa activity indicatorom i cool je pogledaj
   const searchFilterFunction = (text) => {
@@ -79,9 +87,9 @@ const Tours = observer(({ navigation }) => {
     }
   };}
   const detailStore = useContext(descriptionStoreContext);
- 
-  
- 
+
+
+
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setLang(langStore.language);
@@ -93,9 +101,9 @@ const Tours = observer(({ navigation }) => {
   const l10n = {
     'title': {en: 'Choose tour', sr: 'Izaberi turu'},
     'search': {en: 'Search', sr: 'Pretraga'},
-    
+
 }
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -129,10 +137,10 @@ const Tours = observer(({ navigation }) => {
                   detailStore.desc = (lang == "sr") ? item.description : item.description_en;
                   detailStore.image = item.image;
                   detailStore.markers = item.Place;
-                
+
                 }}
               >
-                
+
                 <ListItem title={(lang == "sr") ? item.title : item.title_en} image={item.image} />
               </Pressable>
             </View>

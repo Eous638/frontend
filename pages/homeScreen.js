@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Image } from "react-native";
+import {StyleSheet, Image, BackHandler} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import axios from "axios";
@@ -7,12 +7,21 @@ import { observer } from "mobx-react-lite";
 import { descriptionStoreContext } from "../states/descriptionScreenState";
 import { languageStoreContext } from "../states/languageState";
 const home = observer(({ navigation }) => {
-  
+
   const [errorMsg, setErrorMsg] = useState(null);
   const [markers, setMarkers] = useState([]);
   const langStore = useContext(languageStoreContext);
   const [lang, setLang] = useState("");
   const detailStore = useContext(descriptionStoreContext);
+
+  React.useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      if (navigation.canGoBack()){
+        navigation.goBack();
+        return true;
+      }
+    });
+  }, []);
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -39,11 +48,11 @@ const home = observer(({ navigation }) => {
     const fetchData = async () => {
       const result = await axios("http://api.beotura.rs/api/places");
       setMarkers(result.data);
-     
+
     };
 
     fetchData();
-    
+
   }, []);
 
   return (
@@ -65,7 +74,7 @@ const home = observer(({ navigation }) => {
         <Marker
           key={marker.id_field}
           coordinate={{latitude: parseFloat(marker.latitude), longitude: parseFloat(marker.longitude)}}
-        
+
           onPress={() => {
             navigation.navigate("DetailsScreen");
             detailStore.title = (lang === "sr") ? marker.title : marker.title_en;
@@ -90,7 +99,7 @@ const home = observer(({ navigation }) => {
           resizeMode="contain"
         />
           </Marker>))}
-      
+
     </MapView>
   );
 });
