@@ -18,7 +18,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.beotura.app"
+      "bundleIdentifier": "com.beotura.app",
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Allow Beotura to access your location in order to be able to improve your experience whilst exploring Belgrade.",
+        "NSLocationAlwaysUsageDescription": "Allow Beotura to access your location in order to be able to improve your experience whilst exploring Belgrade.",
+        "NSLocationWhenInUseUsageDescription": "Allow Beotura to access your location in order to be able to improve your experience whilst exploring Belgrade."
+      }
     },
     "android": {
       "versionCode": 3,
